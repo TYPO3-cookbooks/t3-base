@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: base
+# Cookbook Name:: t3-base
 # Recipe:: default
 #
 # Copyright 2011, TYPO3 Association
@@ -43,7 +43,7 @@ case node[:platform]
   end
 end
 
-include_recipe "base::squeeze-lts"
+include_recipe "t3-base::squeeze-lts"
 
 include_recipe "chef_handler"
 include_recipe "locales"

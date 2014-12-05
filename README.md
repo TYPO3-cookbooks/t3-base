@@ -19,8 +19,8 @@ Installs and updates basic software packages deployed to every node.
 
 # Recipes
 
-* base::default
-* base::production
+* t3-base::default
+* t3-base::production
 
 # License and Maintainer
 

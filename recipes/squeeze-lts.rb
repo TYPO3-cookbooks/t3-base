@@ -1,4 +1,4 @@
-# Cookbook Name:: base
+# Cookbook Name:: t3-base
 # Recipe:: squeeze-lts
 # Author:: Michael Stucki <michael.stucki@typo3.org>
 #
