@@ -2,4 +2,16 @@ source "https://supermarket.chef.io"
 
 metadata
 
-cookbook 't3-zabbix', github: 'TYPO3-cookbooks/t3-zabbix'
+%w{
+etckeeper
+locales
+ohmyzsh
+openssh
+t3-zabbix
+zabbix
+}.each do |cb|
+  cookbook cb, github: "TYPO3-cookbooks/#{cb}"
+end
+
+# dependencies of t3-zabbix
+cookbook "zabbix-custom-checks",     github: "TYPO3-cookbooks/zabbix-custom-checks"
