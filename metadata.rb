@@ -4,7 +4,7 @@ maintainer_email "steffen.gebert@typo3.org"
 license          "Apache 2.0"
 description      "Installs and updates basic software packages deployed to every node."
 
-version          "0.0.9"
+version          "0.0.10"
 
 depends "chef_handler", "= 1.0.6"
 depends "etckeeper", "= 1.0.0"
