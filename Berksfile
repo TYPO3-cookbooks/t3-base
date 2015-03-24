@@ -6,7 +6,6 @@ metadata
 etckeeper
 locales
 ohmyzsh
-openssh
 t3-zabbix
 zabbix
 }.each do |cb|
