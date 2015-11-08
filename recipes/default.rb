@@ -23,6 +23,7 @@ packages = [
   'htop',
   'iftop',
   'iotop',
+  'lsb-release',
   'lynx',
   'mc',
   'nano',
