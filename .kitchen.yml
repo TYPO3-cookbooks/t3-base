@@ -6,7 +6,8 @@ provisioner:
   name: chef_zero
 
 platforms:
-  - name: debian-7.6
+  - name: debian-7.8
+  - name: debian-8.2
 
 suites:
   - name: default
