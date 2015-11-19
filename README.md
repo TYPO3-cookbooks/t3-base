@@ -22,6 +22,10 @@ Installs and updates basic software packages deployed to every node.
 * t3-base::default
 * t3-base::production
 
+# Libraries
+
+* `include_if_available(recipe)` includes a recipe, if it exists.
+
 # License and Maintainer
 
 Maintainer:: TYPO3 Association (<steffen.gebert@typo3.org>)

@@ -17,33 +17,30 @@
 # limitations under the License.
 #
 
-packages = [
-  'bc',
-  'curl',
-  'htop',
-  'iftop',
-  'iotop',
-  'lsb-release',
-  'lynx',
-  'mc',
-  'nano',
-  'tcpdump',
-  'telnet',
-  'tig',
-  'traceroute',
-  'wget',
-  'whois'
-]
+::Chef::Recipe.send(:include, Typo3::Base::Recipe)
+::Chef::Recipe.send(:include, Typo3::Base::Node)
 
-case node[:platform]
-  when "debian", "ubuntu"
-    packages.each do |pkg|
-      package pkg do
-        action :upgrade
-    end
-  end
+#######################
+# Physical and Virtualized host
+#######################
+
+include_recipe "t3-base::_physical" if physical?
+# not yet needed
+# include_recipe "t3-base::_virtualized" if virtualized?
+
+#######################
+# Virtualization in use (either host or guest)
+#######################
+
+if virtualization?
+  Chef::Log.debug("Virtualization detected (using #{node[:virtualization][:system]})")
+  # automatically include the cookbook for the used virtualization type (e.g. t3-openvz, t3-kvm, t3-vbox)
+  include_if_available "t3-#{node[:virtualization][:system]}::default"
 end
 
+
+
+include_recipe "t3-base::_software"
 include_recipe "t3-base::_postfix"
 include_recipe "t3-base::squeeze-lts"
 
