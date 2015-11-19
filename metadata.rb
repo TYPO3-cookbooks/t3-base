@@ -4,7 +4,7 @@ maintainer_email "steffen.gebert@typo3.org"
 license          "Apache 2.0"
 description      "Installs and updates basic software packages deployed to every node."
 
-version          "0.1.0"
+version          "0.2.0"
 
 depends "hwraid", "~> 1.1.0"
 
