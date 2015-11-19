@@ -18,6 +18,7 @@
 #
 
 ::Chef::Recipe.send(:include, Typo3::Base::Recipe)
+::Chef::Recipe.send(:include, Typo3::Base::Node)
 
 packages = [
   'bc',
@@ -45,6 +46,28 @@ case node[:platform]
     end
   end
 end
+
+
+#######################
+# Physical and Virtualized host
+#######################
+
+include_recipe "t3-base::_physical" if physical?
+# not yet needed
+# include_recipe "t3-base::_virtualized" if virtualized?
+
+#######################
+# Virtualization in use (either host or guest)
+#######################
+
+if virtualization?
+  Chef::Log.debug("Virtualization detected (using #{node[:virtualization][:system]})")
+  # automatically include the cookbook for the used virtualization type (e.g. openvz, vmware, vbox)
+  include_if_available "#{node[:virtualization][:system]}::default"
+end
+
+
+
 
 include_recipe "t3-base::_postfix"
 include_recipe "t3-base::squeeze-lts"
