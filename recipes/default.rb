@@ -20,34 +20,6 @@
 ::Chef::Recipe.send(:include, Typo3::Base::Recipe)
 ::Chef::Recipe.send(:include, Typo3::Base::Node)
 
-packages = [
-  'bc',
-  'curl',
-  'htop',
-  'iftop',
-  'iotop',
-  'lsb-release',
-  'lynx',
-  'mc',
-  'nano',
-  'tcpdump',
-  'telnet',
-  'tig',
-  'traceroute',
-  'wget',
-  'whois'
-]
-
-case node[:platform]
-  when "debian", "ubuntu"
-    packages.each do |pkg|
-      package pkg do
-        action :upgrade
-    end
-  end
-end
-
-
 #######################
 # Physical and Virtualized host
 #######################
@@ -68,7 +40,7 @@ end
 
 
 
-
+include_recipe "t3-base::_software"
 include_recipe "t3-base::_postfix"
 include_recipe "t3-base::squeeze-lts"
 
