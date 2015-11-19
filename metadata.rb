@@ -4,7 +4,7 @@ maintainer_email "steffen.gebert@typo3.org"
 license          "Apache 2.0"
 description      "Installs and updates basic software packages deployed to every node."
 
-version          "0.2.2"
+version          "0.2.3"
 
 # TYPO3 cookbooks (pin to minor version: "~> a.b.0")
 depends "hwraid",     "~> 1.1.0"
