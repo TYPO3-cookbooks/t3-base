@@ -6,6 +6,8 @@ description      "Installs and updates basic software packages deployed to every
 
 version          "0.1.0"
 
+depends "hwraid", "~> 1.1.0"
+
 depends "chef_handler", "= 1.0.6"
 depends "etckeeper", "= 1.0.0"
 depends "locales", "= 1.1.1"
