@@ -17,6 +17,8 @@
 # limitations under the License.
 #
 
+::Chef::Recipe.send(:include, Typo3::Base::Recipe)
+
 packages = [
   'bc',
   'curl',
