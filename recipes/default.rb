@@ -34,8 +34,8 @@ include_recipe "t3-base::_physical" if physical?
 
 if virtualization?
   Chef::Log.debug("Virtualization detected (using #{node[:virtualization][:system]})")
-  # automatically include the cookbook for the used virtualization type (e.g. openvz, vmware, vbox)
-  include_if_available "#{node[:virtualization][:system]}::default"
+  # automatically include the cookbook for the used virtualization type (e.g. t3-openvz, t3-kvm, t3-vbox)
+  include_if_available "t3-#{node[:virtualization][:system]}::default"
 end
 
 
