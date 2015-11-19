@@ -44,6 +44,7 @@ case node[:platform]
   end
 end
 
+include_recipe "t3-base::_postfix"
 include_recipe "t3-base::squeeze-lts"
 
 include_recipe "chef_handler"
