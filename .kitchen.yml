@@ -14,3 +14,7 @@ suites:
     run_list:
       - recipe[t3-base::default]
     attributes:
+  - name: physical
+    run_list:
+      - recipe[t3-base::default]
+      - recipe[t3-base::_physical]
