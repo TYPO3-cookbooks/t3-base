@@ -3,3 +3,6 @@
 default['postfix']['main']['masquerade_domains'] = (node['domain'] || node['hostname']).to_s.chomp('.')
 
 default['postfix']['aliases']['root'] = "admin@typo3.org"
+
+#<> Some applications try to send mails from root@localhost, which are not accepted by the mail server. Rewrite those to root@typo3.org
+default['postfix']['smtp_generic_map_entries'] = { "@localhost" => "@typo3.org" }
