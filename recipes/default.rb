@@ -40,6 +40,7 @@ end
 
 
 
+include_recipe "t3-base::_users"
 include_recipe "t3-base::_software"
 include_recipe "t3-base::_postfix"
 include_recipe "t3-base::squeeze-lts"
