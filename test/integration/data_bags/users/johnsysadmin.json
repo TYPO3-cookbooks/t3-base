@@ -1,0 +1,8 @@
+{
+	"id": "johnsysadmin",
+	"groups": "sysadmin",
+	"comment": "John Sysadmin",
+	"email": "john@example.org",
+	"shell": "/bin/bash",
+	"ssh_keys": "ssh-rsa 123"
+}
