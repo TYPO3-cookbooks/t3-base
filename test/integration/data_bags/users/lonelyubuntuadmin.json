@@ -1,0 +1,13 @@
+{
+	"id": "lonelyubuntuadmin",
+	"comment": "Lonely Ubuntu Admin",
+	"email": "lonelyu@example.org",
+	"shell": "/bin/bash",
+	"ssh_keys": "ssh-rsa 123",
+	"nodes": {
+		"default-ubuntu-1404": {
+			"sudo": "true",
+			"action": "create"
+		}
+	}
+}

@@ -1,0 +1,12 @@
+{
+	"id": "removeduser",
+	"comment": "Removed User",
+	"email": "removedu@example.org",
+	"shell": "/bin/bash",
+	"ssh_keys": "ssh-rsa 123",
+	"nodes": {
+		"default-debian-78": {
+			"action": "remove"
+		}
+	}
+}
