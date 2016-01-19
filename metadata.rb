@@ -3,8 +3,16 @@ maintainer       "TYPO3 Association"
 maintainer_email "steffen.gebert@typo3.org"
 license          "Apache 2.0"
 description      "Installs and updates basic software packages deployed to every node."
+source_url       "https://github.com/typo3-cookbooks/t3-base"
 
 version          "0.2.8"
+
+recipe "t3-base::default",   "Includes other recipes, some of them based on ohai detections"
+recipe "t3-base::_physical", "Recipes that we want on physical nodes"
+recipe "t3-base::_users",    "Creates users based on the `users` data bag"
+recipe "t3-base::_software", "Different software that we want o nevery node"
+
+supports         "debian"
 
 # TYPO3 cookbooks (pin to minor version: "~> a.b.0")
 depends "hwraid",     "~> 1.1.0"

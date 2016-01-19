@@ -1,11 +1,12 @@
-# chef_handler
+#<> chef_handler: the place where we store our chef handler
 default[:chef_handler][:handler_path] = "/var/chef/handlers"
 
-# etckeeper
+#<> etckeeper: disable remotes in etckeeper
 default[:etckeeper][:git_remote_enabled] = false
 
-# monit
+#<> monit: notification mail
 default[:monit][:notify_email] = "typo3-team-server@lists.typo3.org"
+#<> monit: notification mail template
 default[:monit][:mail_format][:message] = <<-EOS
 $EVENT Service $SERVICE
     Date:        $DATE
@@ -16,10 +17,3 @@ $EVENT Service $SERVICE
 Your faithful employee,
 Monit
 EOS
-
-# openssh
-default['openssh']['server']['permit_root_login'] = 'no'
-default['openssh']['server']['password_authentication'] = 'no'
-default['openssh']['server']['protocol'] = '2'
-default['openssh']['server']['accept_env'] = 'LANG LC_*'
-default['openssh']['server']['subsystem'] = 'sftp /usr/lib/openssh/sftp-server'
