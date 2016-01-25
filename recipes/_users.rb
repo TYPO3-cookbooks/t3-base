@@ -1,7 +1,7 @@
 include_recipe "sudo"
 include_recipe "users::sysadmins"
 
-node_attribute = "hostname"
+node_attribute = "fqdn"
 users = nil
 begin
   log "Searching for users associated with node #{node[node_attribute]}"
