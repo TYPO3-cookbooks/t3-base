@@ -1,13 +1,33 @@
 include_recipe "sudo"
+
+# check if the "users" data bag exists. if not, just skip the
+# remainder of this recipe.
+begin
+  data_bag(:users)
+rescue Net::HTTPServerException
+  Chef::Log.warn("Data bag \"users\" doesn't exist")
+  return
+end
+
+##############
+# sysadmins
+##############
+
+# automatically add all users in the sysadmin group
 include_recipe "users::sysadmins"
 
+
+##############
+# users defined for this node
+##############
+
 node_attribute = "fqdn"
-users = nil
+log "Searching for users associated with node #{node[node_attribute]}"
 begin
-  log "Searching for users associated with node #{node[node_attribute]}"
   users = search(:users, "nodes:#{node[node_attribute]}")
-rescue
-  raise "Searching for users associated with node '#{node[node_attribute]}' failed"
+rescue Net::HTTPServerException
+  Chef::Log.warn "Searching for users in the 'users' databag failed, search for users associated with node '#{node[node_attribute]}'"
+  users = {}
 end
 
 users.each do |u|
