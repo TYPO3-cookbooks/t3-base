@@ -52,7 +52,6 @@ include_if_available "t3-base::_platform_#{node[:platform]}"
 include_recipe "t3-base::_users"
 include_recipe "t3-base::_software"
 include_recipe "t3-base::_postfix"
-include_recipe "t3-base::squeeze-lts"
 
 include_recipe "chef_handler"
 include_recipe "locales"
