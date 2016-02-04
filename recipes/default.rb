@@ -38,7 +38,16 @@ if virtualization?
   include_if_available "t3-#{node[:virtualization][:system]}::default"
 end
 
+# we try to automatically include recipes for specific platform (families)
+#
+# platforms: debian, ubuntu
+# platform_families: debian (for ubuntu and debian)
+#
+# other values might come an option at a future time, once some other OS takes over
+# leadership over our beloved infrastructure
 
+include_if_available "t3-base::_platform_family_#{node[:platform_family]}"
+include_if_available "t3-base::_platform_#{node[:platform]}"
 
 include_recipe "t3-base::_users"
 include_recipe "t3-base::_software"

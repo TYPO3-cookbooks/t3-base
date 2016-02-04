@@ -17,6 +17,7 @@ Installs and updates basic software packages deployed to every node.
 * ohmyzsh (~> 1.0.0)
 * t3-openvz (~> 1.1.0)
 * t3-kvm (~> 0.1.0)
+* apt (= 2.9.2)
 * chef_handler (= 1.0.6)
 * git (= 4.2.4)
 * openssh (= 1.3.4)
@@ -56,6 +57,18 @@ Libraries
 
 * `include_if_available(recipe)` includes a recipe, if it exists.
 
+
+Platform (OS) specific Recipes
+==============================
+
+To provide platform-specific configuration (e.g. for Debian 7 or all Ubuntu versions), the `default` recipe
+automatically tries to include the following (eventually existing) recipes:
+
+* `t3-base::_platform_family_#{node[:platform_family]}`
+* `t3-base::_platform_#{node[:platform]}`
+
+This results in the `_platform_familiy_debian` recipe being included for Debian and Ubuntu systems, while
+`_platform_ubuntu` will be included for Ubuntu and `_platform_debian` for Debian systems.
 
 Users
 =====
