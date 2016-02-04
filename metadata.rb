@@ -24,6 +24,7 @@ depends "t3-openvz",  "~> 1.1.0"
 depends "t3-kvm",     "~> 0.1.0"
 
 # Upstream cookbooks (pin to patch-level version: "= a.b.c")
+depends "apt",          "= 2.9.2"
 depends "chef_handler", "= 1.0.6"
 depends "git",          "= 4.2.4"
 depends "openssh",      "= 1.3.4"
