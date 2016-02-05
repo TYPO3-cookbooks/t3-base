@@ -64,6 +64,12 @@ users.each do |u|
       action u['action'] if u['action']
     end
 
+    directory home_dir do
+      owner u['uid']
+      group u['gid'] if u['gid']
+      mode '0755'
+    end
+
     # ssh key management
     directory "#{home_dir}/.ssh" do
       owner u['uid']
