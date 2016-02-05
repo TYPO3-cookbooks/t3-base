@@ -16,6 +16,17 @@ end
 # automatically add all users in the sysadmin group
 include_recipe "users::sysadmins"
 
+# Permit additional "sysadmin" tasks which can be run without password
+sudo "sysadmins" do
+  group "sysadmin"
+  nopasswd true
+  command_aliases [
+                    { name: 'APT_GET',     command_list: ['/usr/bin/apt-get'] },
+                    { name: 'CHEF_CLIENT', command_list: ['/usr/bin/chef-client'] },
+                    { name: 'SERVICE',     command_list: ['/usr/sbin/service'] }
+                  ]
+  commands ['APT_GET', 'CHEF_CLIENT', 'SERVICE']
+end
 
 ##############
 # users defined for this node
