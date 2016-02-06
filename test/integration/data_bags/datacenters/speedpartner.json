@@ -1,0 +1,8 @@
+{
+  "id": "speedpartner",
+  "servers": [
+    "ms03.typo3.org",
+    "ms04.typo3.org"
+  ],
+  "attributes": {}
+}
