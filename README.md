@@ -10,30 +10,38 @@ Installs and updates basic software packages deployed to every node.
 
 ## Cookbooks:
 
+* backuppc (~> 0.9.0)
+* etckeeper (~> 1.0.0)
 * hwraid (~> 1.1.0)
 * locales (~> 1.1.0)
-* etckeeper (~> 1.0.0)
-* t3-zabbix (~> 0.2.0)
 * ohmyzsh (~> 1.0.0)
-* t3-openvz (~> 1.1.0)
+* t3-chef-client (~> 0.4.0)
 * t3-kvm (~> 0.1.0)
+* t3-openvz (~> 1.1.0)
+* t3-zabbix (~> 0.2.0)
 * apt (= 2.9.2)
 * chef_handler (= 1.0.6)
 * git (= 4.2.4)
+* logrotate (= 1.9.2)
+* lvm (= 0.7.0)
+* ntp (= 1.8.6)
 * openssh (= 1.3.4)
+* postfix (= 3.7.0)
 * rsync (= 0.7.0)
 * screen (= 0.7.0)
-* postfix (= 3.7.0)
-* ntp (= 1.8.6)
-* lvm (= 0.7.0)
+* sudo (= 2.6.0)
 * users (= 2.0.1)
 
 # Attributes
 
+* `node['backuppc']['user']` - SSH user used for logins of the backup server. Defaults to `t3o-backup`.
 * `node[:chef_handler][:handler_path]` - chef_handler: the place where we store our chef handler. Defaults to `/var/chef/handlers`.
 * `node[:etckeeper][:git_remote_enabled]` - etckeeper: disable remotes in etckeeper. Defaults to `false`.
-* `node[:monit][:notify_email]` - monit: notification mail. Defaults to `typo3-team-server@lists.typo3.org`.
-* `node[:monit][:mail_format][:message]` - monit: notification mail template. Defaults to `<<-EOS`.
+* `node['logrotate']['global']['daily']` - Rotate logs on a daily basis. Defaults to `true`.
+* `node['logrotate']['global']['rotate']` - Keep 7 days of logs. Defaults to `7`.
+* `node['logrotate']['global']['notifempty']` - Only rotate log, if it has content. Defaults to `true`.
+* `node['logrotate']['global']['compress']` - Compress logs. Defaults to `true`.
+* `node['logrotate']['global']['dateext']` - Do not number rotated logs, use date in filename (better for backup). Defaults to `true`.
 * `node['ntp']['servers']` -  Defaults to `[ ... ]`.
 * `node['openssh']['server']['permit_root_login']` - openssh: disallow root login. Defaults to `no`.
 * `node['openssh']['server']['password_authentication']` - openssh: disallow password authentication. Defaults to `no`.
@@ -51,6 +59,42 @@ Installs and updates basic software packages deployed to every node.
 * t3-base::_physical - Recipes that we want on physical nodes
 * t3-base::_users - Creates users based on the `users` data bag
 * t3-base::_software - Different software that we want o nevery node
+* t3-base::_platform_debian - Debian-specific configuration (e.g. LTS repos)
+* t3-base::_platform_family_debian - Debian/Ubuntu-specific configuration (e.g. incude `apt`)
+* t3-base::_datacenter - Detects, in which data center a node is and applies specific attributes based on the `datacenters` data bag
+* t3-base::_production - Configuration that is only needed for production nodes (e.g. backup, monitoring, chef-client config)
+
+Datacenter  / Production Configuration
+======================================
+
+The `t3-base::_datacenter` recipe detects, if we are running in a production data center. It therefore searches the `datacenters`
+data bag for entries including the (physical) server that we are running on.
+
+If it is detected that we are running in the data center, the `t3-base::_production` recipe is automatically included.
+This applies production-only configuration (chef-client config, backup, monitoring). **Make sure that the things
+added here have no impact on other configuration!**
+
+Such data bag entry can define data center specific **attributes** and **cookbooks** (for a server `test.vagrant` in
+the `test` data center and its VMs):
+
+```
+{
+  "name": "test",
+  "servers": [
+    "test.vagrant"
+  ],
+  "attributes": {
+    "postfix": {
+      "main": {
+        "relayhost": "test.example.com"
+      }
+    }
+  },
+  "cookbooks": [
+    "special-cookbook-for-dc-test"
+  ]
+}
+```
 
 Libraries
 =========
