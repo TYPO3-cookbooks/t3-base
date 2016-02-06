@@ -16,6 +16,17 @@ end
 # automatically add all users in the sysadmin group
 include_recipe "users::sysadmins"
 
+# Permit additional "sysadmin" tasks which can be run without password
+sudo "sysadmins" do
+  group "sysadmin"
+  nopasswd true
+  command_aliases [
+                    { name: 'APT_GET',     command_list: ['/usr/bin/apt-get'] },
+                    { name: 'CHEF_CLIENT', command_list: ['/usr/bin/chef-client'] },
+                    { name: 'SERVICE',     command_list: ['/usr/sbin/service'] }
+                  ]
+  commands ['APT_GET', 'CHEF_CLIENT', 'SERVICE']
+end
 
 ##############
 # users defined for this node
@@ -62,6 +73,12 @@ users.each do |u|
       supports manage_home: true
       home home_dir
       action u['action'] if u['action']
+    end
+
+    directory home_dir do
+      owner u['uid']
+      group u['gid'] if u['gid']
+      mode '0755'
     end
 
     # ssh key management

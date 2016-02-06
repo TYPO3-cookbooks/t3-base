@@ -38,12 +38,21 @@ if virtualization?
   include_if_available "t3-#{node[:virtualization][:system]}::default"
 end
 
+# we try to automatically include recipes for specific platform (families)
+#
+# platforms: debian, ubuntu
+# platform_families: debian (for ubuntu and debian)
+#
+# other values might come an option at a future time, once some other OS takes over
+# leadership over our beloved infrastructure
 
+include_if_available "t3-base::_platform_family_#{node[:platform_family]}"
+include_if_available "t3-base::_platform_#{node[:platform]}"
 
+include_recipe "t3-base::_datacenter"
 include_recipe "t3-base::_users"
 include_recipe "t3-base::_software"
 include_recipe "t3-base::_postfix"
-include_recipe "t3-base::squeeze-lts"
 
 include_recipe "chef_handler"
 include_recipe "locales"
@@ -53,3 +62,4 @@ include_recipe "etckeeper"
 include_recipe "rsync"
 include_recipe "screen"
 include_recipe "ohmyzsh"
+include_recipe "logrotate::global"

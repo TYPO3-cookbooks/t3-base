@@ -1,0 +1,16 @@
+{
+  "id": "hetzner",
+  "servers": [
+    "ms07.typo3.org",
+    "ms08.typo3.org"
+  ],
+  "attributes": {
+    "ntp": {
+      "servers": [
+        "ntp1.hetzner.de",
+        "ntp2.hetzner.com",
+        "ntp3.hetzner.net"
+      ]
+    }
+  }
+}
