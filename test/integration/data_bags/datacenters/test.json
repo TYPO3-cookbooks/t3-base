@@ -5,7 +5,9 @@
   ],
   "attributes": {
     "postfix": {
-      "relayhost": "test.example.com"
+      "main": {
+        "relayhost": "test.example.com"
+      }
     },
     "ntp": {
       "servers": [
