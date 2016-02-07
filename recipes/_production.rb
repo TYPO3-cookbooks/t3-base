@@ -9,7 +9,7 @@ backuppc
 # 401 Unauthorized
 # error when searching the sysadmin data bag in the users_manage("sysadmin") resource.
 # Therefore, exclude t3-chef-client, if we have this magic attribute set
-unless node['t3-base']['prevent-t3-chef-client-inclusion-for-testing']
+unless node['t3-base'] && node['t3-base']['prevent-t3-chef-client-inclusion-for-testing']
   production_recipes << 't3-chef-client'
   production_recipes << 't3-chef-client::knife-lastrun'
 end
