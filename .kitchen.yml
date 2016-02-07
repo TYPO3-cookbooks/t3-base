@@ -26,6 +26,6 @@ suites:
     - recipe[t3-base::default]
     attributes:
       virtualization:
-        masterserver: test.vagrant
+        host: test.vagrant
       t3-base:
         prevent-t3-chef-client-inclusion-for-testing: true
