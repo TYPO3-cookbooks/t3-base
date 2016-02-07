@@ -23,8 +23,8 @@
 #############################
 # who's my host?
 #############################
-if !node[:virtualization][:masterserver].nil?
-  physical_server = node[:virtualization][:masterserver]
+if !node[:virtualization][:host].nil?
+  physical_server = node[:virtualization][:host]
 else
   physical_server = node[:fqdn]
 end
