@@ -24,8 +24,10 @@ module Typo3
       def include_if_available(recipe)
         begin
           include_recipe recipe
-        rescue
-          Chef::Log.warn "Tried to include recipe #{recipe}, but recipe is not available"
+        rescue Chef::Exceptions::CookbookNotFound
+          Chef::Log.warn "Tried to include recipe #{recipe}, but cookbook is not available"
+         rescue Chef::Exceptions::RecipeNotFound
+           Chef::Log.warn "Tried to include recipe #{recipe}, but recipe is not available"
         end
       end
 
