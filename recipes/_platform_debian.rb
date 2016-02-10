@@ -20,10 +20,27 @@
 # Add the squeeze-lts repository
 
 if node[:platform] == "debian" and node[:platform_version].to_i < 7
+  log "Executing Debian Squeeze specific resources"
+
   apt_repository "squeeze-lts" do
     uri "http://http.debian.net/debian/"
     distribution "squeeze-lts"
     components ['main', 'contrib', 'non-free']
     action :add
   end
+
+  # As of February 2016 the certificate for *.typo3.org is signed by a root CA
+  # that is not trusted by Debian Squeeze. Therefore, add this certificate to
+  # the trust store.
+  # Original file:
+  # https://www.geotrust.com/resources/root_certificates/certificates/Geotrust_PCA_G3_Root.pem
+  cookbook_file "/usr/local/share/ca-certificates/Geotrust_PCA_G3_Root.crt" do
+    source "Geotrust_PCA_G3_Root.pem"
+    notifies :run, "execute[update-ca-certificates]"
+    mode "0744"
+  end
+  execute "update-ca-certificates" do
+    action :nothing
+  end
+
 end
