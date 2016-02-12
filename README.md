@@ -52,6 +52,7 @@ Installs and updates basic software packages deployed to every node.
 * `node['postfix']['aliases']['root']` -  Defaults to `admin@typo3.org`.
 * `node['postfix']['smtp_generic_map_entries']` - Some applications try to send mails from root@localhost, which are not accepted by the mail server. Rewrite those to root@typo3.org. Defaults to `{ ... }`.
 * `node['authorization']['sudo']['include_sudoers_d']` - Include everything from /etc/sudoers.d/. Defaults to `true`.
+* `node['authorization']['sudo']['sudoers_defaults']` - Set up `secure_path`, otherwise $PATH will be very short after sudo'ing. Defaults to `[ ... ]`.
 
 # Recipes
 
@@ -94,6 +95,20 @@ the `test` data center and its VMs):
     "special-cookbook-for-dc-test"
   ]
 }
+```
+
+The data center of a node is further saved in the `node[datacenter]` attribute.
+To find out the datacenter, in which a node is running, use
+
+```
+$ knife node show whatever.typo3.org -a datacenter
+whatever.typo3.org:
+  datacenter: my_datacenter
+```
+
+In order to search for all nodes in a datacenter, you can use the following query:
+```
+$ knife search node "datacenter:my_datacenter"
 ```
 
 Libraries
