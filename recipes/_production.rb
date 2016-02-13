@@ -22,12 +22,16 @@ end
 # postfix aliases
 #################
 
-sysadmins = search("users", "groups:sysadmin AND NOT action:remove")
+if Chef::DataBag.list.key?('users')
+  sysadmins = search("users", "groups:sysadmin AND NOT action:remove")
 
-aliases_root = []
-sysadmins.each do |user|
-  aliases_root << user['email']
-  Chef::Log.info "Set up alias for user #{user['id']}"
-  node.set['postfix']['aliases'][user['id']] = user['email']
+  aliases_root = []
+  sysadmins.each do |user|
+    aliases_root << user['email']
+    Chef::Log.info "Set up alias for user #{user['id']}"
+    node.set['postfix']['aliases'][user['id']] = user['email']
+  end
+  node.set['postfix']['aliases']['root'] = aliases_root
+else
+  Chef::Log.warn("Data bag \"users\" doesn't exist")
 end
-node.set['postfix']['aliases']['root'] = aliases_root

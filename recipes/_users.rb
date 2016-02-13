@@ -2,9 +2,7 @@ include_recipe "sudo"
 
 # check if the "users" data bag exists. if not, just skip the
 # remainder of this recipe.
-begin
-  data_bag(:users)
-rescue Net::HTTPServerException
+unless Chef::DataBag.list.key?('users')
   Chef::Log.warn("Data bag \"users\" doesn't exist")
   return
 end
