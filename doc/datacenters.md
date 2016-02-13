@@ -29,3 +29,17 @@ the `test` data center and its VMs):
   ]
 }
 ```
+
+The data center of a node is further saved in the `node[datacenter]` attribute.
+To find out the datacenter, in which a node is running, use
+
+```
+$ knife node show whatever.typo3.org -a datacenter
+whatever.typo3.org:
+  datacenter: my_datacenter
+```
+
+Accordingly, you can use this attribute to search for all nodes in a datacenter:
+```
+$ knife search node "datacenter:my_datacenter"
+```
