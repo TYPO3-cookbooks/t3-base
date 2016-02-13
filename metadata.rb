@@ -5,7 +5,7 @@ license          "Apache 2.0"
 description      "Installs and updates basic software packages deployed to every node."
 source_url       "https://github.com/typo3-cookbooks/t3-base"
 
-version          "0.2.24"
+version          "0.2.25"
 
 recipe "t3-base::default",                  "Includes other recipes, some of them based on ohai detections"
 recipe "t3-base::_physical",                "Recipes that we want on physical nodes"
@@ -19,7 +19,7 @@ recipe "t3-base::_production",             "Configuration that is only needed fo
 supports         "debian"
 
 # TYPO3 cookbooks (pin to minor version: "~> a.b.0")
-depends "backuppc",   "~> 0.9.0"
+depends "backuppc",   "~> 1.0.0"
 depends "etckeeper",  "~> 1.0.0"
 depends "hwraid",     "~> 1.1.0"
 depends "locales",    "~> 1.1.0"
