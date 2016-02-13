@@ -19,7 +19,7 @@ recipe "t3-base::_production",             "Configuration that is only needed fo
 supports         "debian"
 
 # TYPO3 cookbooks (pin to minor version: "~> a.b.0")
-depends "backuppc",   "~> 0.9.0"
+depends "backuppc",   "~> 1.0.0"
 depends "etckeeper",  "~> 1.0.0"
 depends "hwraid",     "~> 1.1.0"
 depends "locales",    "~> 1.1.0"
