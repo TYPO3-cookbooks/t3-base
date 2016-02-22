@@ -63,7 +63,7 @@ users.each do |u|
 
     # Create user object.
     user u['username'] do
-      uid u['uid']
+      uid u['uid'] if u['uid']
       gid u['gid'] if u['gid']
       shell u['shell']
       comment u['comment']
@@ -74,21 +74,21 @@ users.each do |u|
     end
 
     directory home_dir do
-      owner u['uid']
+      owner u['username']
       group u['gid'] if u['gid']
       mode '0755'
     end
 
     # ssh key management
     directory "#{home_dir}/.ssh" do
-      owner u['uid']
+      owner u['username']
       group u['gid'] if u['gid']
       mode '0700'
     end
 
     file "#{home_dir}/.ssh/authorized_keys" do
       content Array(u['ssh_keys']).join("\n")
-      owner u['uid']
+      owner u['username']
       group u['gid'] if u['gid']
       mode '0600'
       only_if { u['ssh_keys'] }
