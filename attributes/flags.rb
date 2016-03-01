@@ -1,0 +1,2 @@
+#<> Defines, whether we are running in a production context, meaning that we want monitoring etc. This is enabled in the environment or alternatively for testing in .kitchen.yml
+default['t3-base']['flags']['production'] = false
