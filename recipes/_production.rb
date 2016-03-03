@@ -6,7 +6,7 @@ backuppc
 )
 
 # We add the Etckeeper::StartHandler (installed by etckeeper::commit) as start handler to chef
-node.set['chef_client']['start_handlers'] = [
+node.set['chef_client']['config']['start_handlers'] = [
   {
     :class => 'Etckeeeper::StartHandler',
     :arguments => []
