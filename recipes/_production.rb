@@ -5,6 +5,14 @@ t3-zabbix::agent
 backuppc
 )
 
+# We add the Etckeeper::StartHandler (installed by etckeeper::commit) as start handler to chef
+node.set['chef_client']['start_handlers'] = [
+  {
+    :class => 'Etckeeeper::StartHandler',
+    :arguments => []
+  }
+]
+
 # If we would include t3-chef-client in test-kitchen, this would result in a
 # 401 Unauthorized
 # error when searching the sysadmin data bag in the users_manage("sysadmin") resource.
