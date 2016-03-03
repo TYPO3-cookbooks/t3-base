@@ -5,7 +5,7 @@ license          "Apache 2.0"
 description      "Installs and updates basic software packages deployed to every node."
 source_url       "https://github.com/typo3-cookbooks/t3-base"
 
-version          "0.2.28"
+version          "0.2.29"
 
 recipe "t3-base::default",                  "Includes other recipes, some of them based on ohai detections"
 recipe "t3-base::_physical",                "Recipes that we want on physical nodes"
