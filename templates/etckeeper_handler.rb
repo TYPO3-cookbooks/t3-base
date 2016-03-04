@@ -1,6 +1,6 @@
 # Do no crash if a handler is missing / not installed yet
 begin
-  require '#{node[:chef_handler][:handler_path]}/etckeeper-handler.rb'
+  require '<%= #{node[:chef_handler][:handler_path]} %>/etckeeper-handler.rb'
   start_handlers << Etckeeper::StartHandler.new()
 rescue NameError => e
   Chef::Log.error e
