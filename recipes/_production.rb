@@ -1,30 +1,33 @@
 # recipes that should be included, if we are in production
-production_recipes = %w(
-etckeeper::commit
-t3-zabbix::agent
-backuppc
-)
+include_recipe "t3-zabbix::agent"
+include_recipe "backuppc"
 
-# We add the Etckeeper::StartHandler (installed by etckeeper::commit) as start handler to chef
-node.set['chef_client']['start_handlers'] = [
-  {
-    :class => 'Etckeeeper::StartHandler',
-    :arguments => []
-  }
-]
+##############
+# chef-client
+##############
 
 # If we would include t3-chef-client in test-kitchen, this would result in a
 # 401 Unauthorized
 # error when searching the sysadmin data bag in the users_manage("sysadmin") resource.
 # Therefore, exclude t3-chef-client, if we have this magic attribute set
 unless node['t3-base'] && node['t3-base']['prevent-t3-chef-client-inclusion-for-testing']
-  production_recipes << 't3-chef-client'
-  production_recipes << 't3-chef-client::knife-lastrun'
+  include_recipe 't3-chef-client'
+  include_recipe 't3-chef-client::knife-lastrun'
 end
 
-production_recipes.each do |recipe|
-  include_recipe recipe
+
+##############
+# etckeeper
+##############
+include_recipe "etckeeper::commit"
+
+# We add the Etckeeper::StartHandler (installed by etckeeper::commit) as start handler to chef
+template "#{node['chef_client']['conf_dir']}/client.d/etckeeper-handler.rb" do
+  source "etckeeper-handler.rb"
+  # this does not work in test-kitchen, as we don't have the client.d/ directory -> ignore failure
+  ignore_failure true
 end
+
 
 #################
 # postfix aliases
