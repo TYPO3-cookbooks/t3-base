@@ -1,6 +1,6 @@
 {
 	"id": "johnsysadmin",
-	"groups": "sysadmin",
+	"groups": ["sysadmin"],
 	"comment": "John Sysadmin",
 	"email": "john@example.org",
 	"shell": "/bin/bash",
