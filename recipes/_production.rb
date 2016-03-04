@@ -22,8 +22,8 @@ end
 include_recipe "etckeeper::commit"
 
 # We add the Etckeeper::StartHandler (installed by etckeeper::commit) as start handler to chef
-template "#{node['chef_client']['conf_dir']}/client.d/etckeeper-handler.rb" do
-  source "etckeeper-handler.rb"
+template "#{node['chef_client']['conf_dir']}/client.d/etckeeper_handler.rb" do
+  source "etckeeper_handler.rb"
   # this does not work in test-kitchen, as we don't have the client.d/ directory -> ignore failure
   ignore_failure true
 end
