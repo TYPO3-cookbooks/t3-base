@@ -29,6 +29,9 @@ suites:
     run_list:
     - recipe[t3-base::default]
     attributes:
+      t3-base:
+        flags:
+          production: true
       virtualization:
         host: test.vagrant
       t3-base:
