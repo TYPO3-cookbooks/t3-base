@@ -75,5 +75,3 @@ end
 # label myself to make me searchable
 #################
 node.set[:datacenter] = datacenter[:id]
-
-include_recipe "#{cookbook_name}::_production" if datacenter

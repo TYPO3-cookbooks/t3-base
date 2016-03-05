@@ -50,6 +50,7 @@ include_if_available "t3-base::_platform_family_#{node[:platform_family]}"
 include_if_available "t3-base::_platform_#{node[:platform]}"
 
 include_recipe "t3-base::_datacenter"
+include_recipe "t3-base::_production" if node['t3-base']['flags']['production']
 include_recipe "t3-base::_users"
 include_recipe "t3-base::_software"
 include_recipe "t3-base::_postfix"
