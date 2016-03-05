@@ -10,7 +10,7 @@ Installs and updates basic software packages deployed to every node.
 
 ## Cookbooks:
 
-* backuppc (~> 0.9.0)
+* backuppc (~> 1.0.0)
 * etckeeper (~> 1.0.0)
 * hwraid (~> 1.1.0)
 * locales (~> 1.1.0)
@@ -30,13 +30,15 @@ Installs and updates basic software packages deployed to every node.
 * rsync (= 0.7.0)
 * screen (= 0.7.0)
 * sudo (= 2.6.0)
-* users (= 2.0.1)
+* users (= 2.0.3)
 
 # Attributes
 
 * `node['backuppc']['user']` - SSH user used for logins of the backup server. Defaults to `t3o-backup`.
+* `node['backuppc']['user_ssh_pubkeys']` - SSH keys allowing the server to login. Defaults to `[ ... ]`.
 * `node[:chef_handler][:handler_path]` - chef_handler: the place where we store our chef handler. Defaults to `/var/chef/handlers`.
 * `node[:etckeeper][:git_remote_enabled]` - etckeeper: disable remotes in etckeeper. Defaults to `false`.
+* `node['t3-base']['flags']['production']` - Defines, whether we are running in a production context, meaning that we want monitoring etc. This is enabled in the environment or alternatively for testing in .kitchen.yml. Defaults to `false`.
 * `node['logrotate']['global']['daily']` - Rotate logs on a daily basis. Defaults to `true`.
 * `node['logrotate']['global']['rotate']` - Keep 7 days of logs. Defaults to `7`.
 * `node['logrotate']['global']['notifempty']` - Only rotate log, if it has content. Defaults to `true`.
@@ -71,10 +73,6 @@ Datacenter  / Production Configuration
 The `t3-base::_datacenter` recipe detects, if we are running in a production data center. It therefore searches the `datacenters`
 data bag for entries including the (physical) server that we are running on.
 
-If it is detected that we are running in the data center, the `t3-base::_production` recipe is automatically included.
-This applies production-only configuration (chef-client config, backup, monitoring). **Make sure that the things
-added here have no impact on other configuration!**
-
 Such data bag entry can define data center specific **attributes** and **cookbooks** (for a server `test.vagrant` in
 the `test` data center and its VMs):
 
@@ -106,10 +104,24 @@ whatever.typo3.org:
   datacenter: my_datacenter
 ```
 
-In order to search for all nodes in a datacenter, you can use the following query:
+Accordingly, you can use this attribute to search for all nodes in a datacenter:
 ```
 $ knife search node "datacenter:my_datacenter"
 ```
+
+Flags
+=====
+
+Some special use-cases and situations can be defined by setting flags below `node['t3-base']['flags']`.
+
+Production Environment: `node['t3-base']['flags']['production']`
+----------------------
+
+The fact that we are running in production is triggered by `node['t3-base']['flags']['production'] = true`.
+This results in an inclusion of the `t3-base::_production` recipe and applies production-only configuration
+(chef-client config, backup, monitoring).
+**Make sure that the things
+added here have no impact on other configuration!**
 
 Libraries
 =========
