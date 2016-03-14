@@ -42,7 +42,7 @@ if Chef::DataBag.list.key?('users')
     Chef::Log.info "Set up alias for user #{user['id']}"
     node.set['postfix']['aliases'][user['id']] = user['email']
   end
-  node.set['postfix']['aliases']['root'] = aliases_root
+  node.set['postfix']['aliases']['root'] = aliases_root.sort
 else
   Chef::Log.warn("Data bag \"users\" doesn't exist")
 end
