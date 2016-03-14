@@ -23,7 +23,7 @@ if node[:platform] == "debian" and node[:platform_version].to_i < 7
   log "Executing Debian Squeeze specific resources"
 
   apt_repository "squeeze-lts" do
-    uri "http://http.debian.net/debian/"
+    uri "http://archive.debian.org/debian/"
     distribution "squeeze-lts"
     components ['main', 'contrib', 'non-free']
     action :add
