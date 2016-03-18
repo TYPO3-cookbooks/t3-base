@@ -44,3 +44,5 @@ if node[:platform] == "debian" and node[:platform_version].to_i < 7
   end
 
 end
+
+package "lsb-release"
