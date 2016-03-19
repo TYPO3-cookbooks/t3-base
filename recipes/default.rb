@@ -19,6 +19,7 @@
 
 ::Chef::Recipe.send(:include, Typo3::Base::Recipe)
 ::Chef::Recipe.send(:include, Typo3::Base::Node)
+::Chef::Recipe.send(:include, Typo3::Base::Users)
 
 #######################
 # Physical and Virtualized host
