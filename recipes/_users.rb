@@ -2,9 +2,9 @@ include_recipe "sudo"
 
 # check if the "users" data bag exists. if not, just skip the
 # remainder of this recipe.
-unless Chef::DataBag.list.key?('users')
-  Chef::Log.warn("Data bag \"users\" doesn't exist")
-  return
+unless users_databag_exists?
+  Chef::Log.warn("Data bag \"#{users_databag_name}\" doesn't exist")
+  return‚
 end
 
 ##############
@@ -33,7 +33,7 @@ end
 node_attribute = "fqdn"
 log "Searching for users associated with node #{node[node_attribute]}"
 begin
-  users = search(:users, "nodes:#{node[node_attribute]}")
+  users = search(users_databag_name, "nodes:#{node[node_attribute]}")
 rescue Net::HTTPServerException
   Chef::Log.warn "Searching for users in the 'users' databag failed, search for users associated with node '#{node[node_attribute]}'"
   users = {}

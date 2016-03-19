@@ -33,8 +33,9 @@ end
 # postfix aliases
 #################
 
-if Chef::DataBag.list.key?('users')
-  sysadmins = search("users", "groups:sysadmin AND NOT action:remove")
+if users_databag_exists?
+  # users_sysadmin is from the "Typo3::Base::Users" library
+  sysadmins = users_sysadmins()
 
   aliases_root = []
   sysadmins.each do |user|
@@ -44,5 +45,5 @@ if Chef::DataBag.list.key?('users')
   end
   node.set['postfix']['aliases']['root'] = aliases_root.sort
 else
-  Chef::Log.warn("Data bag \"users\" doesn't exist")
+  Chef::Log.warn("Users data bag doesn't exist")
 end
