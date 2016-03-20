@@ -22,11 +22,10 @@
 if node[:platform] == "debian" and node[:platform_version].to_i < 7
   log "Executing Debian Squeeze specific resources"
 
-  apt_repository "squeeze-lts" do
+  apt_repository "squeeze" do
     uri "http://archive.debian.org/debian/"
-    distribution "squeeze-lts"
+    distribution "squeeze"
     components ['main', 'contrib', 'non-free']
-    action :add
   end
 
   # As of February 2016 the certificate for *.typo3.org is signed by a root CA
