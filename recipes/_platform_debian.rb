@@ -28,6 +28,10 @@ if node[:platform] == "debian" and node[:platform_version].to_i < 7
     components ['main', 'contrib', 'non-free']
   end
 
+  apt_repository "squeeze-lts" do
+    action :remove
+  end
+
   # As of February 2016 the certificate for *.typo3.org is signed by a root CA
   # that is not trusted by Debian Squeeze. Therefore, add this certificate to
   # the trust store.
