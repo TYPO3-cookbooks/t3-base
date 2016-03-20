@@ -37,6 +37,7 @@ if node[:platform] == "debian" and node[:platform_version].to_i < 7
   # the trust store.
   # Original file:
   # https://www.geotrust.com/resources/root_certificates/certificates/Geotrust_PCA_G3_Root.pem
+  # Note: File needs to be converted to Unix linebreaks, otherwise curl breaks (including git clone)
   cookbook_file "/usr/local/share/ca-certificates/Geotrust_PCA_G3_Root.crt" do
     source "Geotrust_PCA_G3_Root.pem"
     notifies :run, "execute[update-ca-certificates]"
