@@ -26,8 +26,9 @@ module Typo3
       end
 
       def users_databag_exists?
-        exists = Chef::Log.debug("Data bag \"#{users_databag_name}\" doesn't exist")
+        exists = Chef::DataBag.list.key?(users_databag_name)
         Chef::Log.debug("Data bag \"#{users_databag_name}\" exists: " + (if exists then "yes" else "no" end))
+        exists
       end
 
       def users_sysadmins
