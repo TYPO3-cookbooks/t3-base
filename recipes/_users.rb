@@ -4,7 +4,7 @@ include_recipe "sudo"
 # remainder of this recipe.
 unless users_databag_exists?
   Chef::Log.warn("Data bag \"#{users_databag_name}\" doesn't exist")
-  return‚
+  return
 end
 
 ##############
