@@ -8,3 +8,5 @@ default['openssh']['server']['protocol'] = '2'
 default['openssh']['server']['accept_env'] = 'LANG LC_*'
 #<> openssh: define sftp subsystem
 default['openssh']['server']['subsystem'] = 'sftp /usr/lib/openssh/sftp-server'
+#<> openssh: do not display message of the day banner (as it woudl duplicate)
+default['openssh']['server']['print_motd'] = 'no'
