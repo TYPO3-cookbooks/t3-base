@@ -1,0 +1,16 @@
+<% if @update_motd %>
+  #!/bin/sh
+
+  cat <<EOS
+<% end -%>
+
+<% if @color %>
+  This is [0;34;49m<%= @hostname %>[0m, a server in the <%= @environment %> environment.
+  Chef run list: [92m<%= @run_list.join(", ") %>[0m
+<% else %>
+  This is <%= @hostname %>, a server in the <%= @environment %> environment.
+  Chef run list: <%= @run_list.join(", ") %>
+<% end -%>
+<% if @update_motd %>
+  EOS
+<% end -%>
