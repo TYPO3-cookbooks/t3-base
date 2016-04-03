@@ -55,6 +55,7 @@ include_recipe "t3-base::_datacenter"
 include_recipe "t3-base::_production" if node['t3-base']['flags']['production']
 include_recipe "t3-base::_software"
 include_recipe "t3-base::_postfix"
+include_recipe "t3-base::_motd"
 
 include_recipe "chef_handler"
 include_recipe "locales"
