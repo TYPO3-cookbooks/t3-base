@@ -5,7 +5,7 @@ This recipe manages users based on the `users` data bag.
 
 * All users with `group: sysadmin` are automatically assigned to all nodes with _sudo_ privileges.
 * All other users are added based on their assignment to particular hosts. The `users` data bag is
-searched for items that contain an entry for `node['hostname']` in the `"nodes"` key of the data bag:
+searched for items that contain an entry for `node['fqdn']` in the `"nodes"` key of the data bag:
 
 ```
 {
