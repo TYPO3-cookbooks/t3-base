@@ -23,7 +23,7 @@ suites:
       - recipe[t3-base::_physical]
   - name: production
     run_list:
-    - recipe[t3-base::default]
+      - recipe[t3-base::default]
     attributes:
       t3-base:
         flags:
