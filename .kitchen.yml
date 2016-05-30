@@ -28,7 +28,6 @@ suites:
       t3-base:
         flags:
           production: true
+        prevent-t3-chef-client-inclusion-for-testing: true
       virtualization:
         host: test.vagrant
-      t3-base:
-        prevent-t3-chef-client-inclusion-for-testing: true
