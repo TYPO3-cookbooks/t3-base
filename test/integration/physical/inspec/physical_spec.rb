@@ -9,7 +9,7 @@ control 't3base-physical-1' do
     it { should be_running }
   end
 
-  describe package('lvm') do
+  describe package('lvm2') do
     it { should be_installed }
   end
 end
