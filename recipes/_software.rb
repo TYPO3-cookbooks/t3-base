@@ -16,8 +16,6 @@ packages = %w{
   whois
 }
 
-packages.each do |pkg|
-  package pkg do
-    action :upgrade
-  end
+package packages do
+  action :upgrade
 end

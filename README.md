@@ -23,7 +23,8 @@ Installs and updates basic software packages deployed to every node.
 * chef_handler (= 1.0.6)
 * git (= 4.2.4)
 * logrotate (= 1.9.2)
-* lvm (= 0.7.0)
+* lvm (= 1.5.1)
+* motd (= 0.6.4)
 * ntp (= 1.8.6)
 * openssh (= 1.3.4)
 * postfix (= 3.7.0)
@@ -38,6 +39,8 @@ Installs and updates basic software packages deployed to every node.
 * `node['backuppc']['user_ssh_pubkeys']` - SSH keys allowing the server to login. Defaults to `[ ... ]`.
 * `node[:chef_handler][:handler_path]` - chef_handler: the place where we store our chef handler. Defaults to `/var/chef/handlers`.
 * `node[:etckeeper][:git_remote_enabled]` - etckeeper: disable remotes in etckeeper. Defaults to `false`.
+* `node['etckeeper']['daily_auto_commits']` - etckeeper: disable daily autocommit (AVOID_DAILY_AUTOCOMMIT). Defaults to `true`.
+* `node['apt']['confd']['install_recommends']` - Do not install recommends packages. Defaults to `false`.
 * `node['t3-base']['flags']['production']` - Defines, whether we are running in a production context, meaning that we want monitoring etc. This is enabled in the environment or alternatively for testing in .kitchen.yml. Defaults to `false`.
 * `node['logrotate']['global']['daily']` - Rotate logs on a daily basis. Defaults to `true`.
 * `node['logrotate']['global']['rotate']` - Keep 7 days of logs. Defaults to `7`.
@@ -50,6 +53,7 @@ Installs and updates basic software packages deployed to every node.
 * `node['openssh']['server']['protocol']` - openssh: use only SSHv2. Defaults to `2`.
 * `node['openssh']['server']['accept_env']` - openssh: set accepted_env to 'LANG LC_*'. Defaults to `LANG LC_*`.
 * `node['openssh']['server']['subsystem']` - openssh: define sftp subsystem. Defaults to `sftp /usr/lib/openssh/sftp-server`.
+* `node['openssh']['server']['print_motd']` - openssh: do not display message of the day banner (as it woudl duplicate). Defaults to `no`.
 * `node['postfix']['main']['masquerade_domains']` -  Defaults to `(node['domain'] || node['hostname']).to_s.chomp('.')`.
 * `node['postfix']['aliases']['root']` -  Defaults to `admin@typo3.org`.
 * `node['postfix']['smtp_generic_map_entries']` - Some applications try to send mails from root@localhost, which are not accepted by the mail server. Rewrite those to root@typo3.org. Defaults to `{ ... }`.
@@ -148,7 +152,7 @@ This recipe manages users based on the `users` data bag.
 
 * All users with `group: sysadmin` are automatically assigned to all nodes with _sudo_ privileges.
 * All other users are added based on their assignment to particular hosts. The `users` data bag is
-searched for items that contain an entry for `node['hostname']` in the `"nodes"` key of the data bag:
+searched for items that contain an entry for `node['fqdn']` in the `"nodes"` key of the data bag:
 
 ```
 {

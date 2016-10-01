@@ -9,10 +9,6 @@ verifier:
   name: inspec
 
 platforms:
-  - name: debian-6.0
-    driver:
-      box: puppetlabs/debian-6.0.10-64-nocm
-      box_url: https://atlas.hashicorp.com/puppetlabs/boxes/debian-6.0.10-64-nocm/versions/1.0.2/providers/virtualbox.box
   - name: debian-7.8
   - name: debian-8.2
 
@@ -27,12 +23,11 @@ suites:
       - recipe[t3-base::_physical]
   - name: production
     run_list:
-    - recipe[t3-base::default]
+      - recipe[t3-base::default]
     attributes:
       t3-base:
         flags:
           production: true
+        prevent-t3-chef-client-inclusion-for-testing: true
       virtualization:
         host: test.vagrant
-      t3-base:
-        prevent-t3-chef-client-inclusion-for-testing: true
