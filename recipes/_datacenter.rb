@@ -34,12 +34,18 @@ Chef::Log.info "Physical server: #{physical_server}"
 # search datacenters data bag
 #############################
 
-if Chef::DataBag.list.key?('datacenters')
-  dc_data = search(:datacenters, "servers:#{physical_server}")
+if physical_server
+  if Chef::DataBag.list.key?('datacenters')
+    dc_data = search(:datacenters, "servers:#{physical_server}")
+  else
+    Chef::Log.warn "No data bag 'datacenters' found. Hopefully we're in testing.."
+    return
+  end
 else
-  Chef::Log.warn "No data bag 'datacenters' found. Hopefully we're in testing.."
+  Chef::Log.warn "Could not determine physical server"
   return
 end
+
 
 if dc_data.length == 0
   Chef::Log.warn "No data center found for physical server #{physical_server}"
