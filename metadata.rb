@@ -25,8 +25,8 @@ depends "hwraid",     "~> 1.1.0"
 depends "locales",    "~> 1.1.0"
 depends "ohmyzsh",    "~> 1.0.0"
 depends "t3-chef-client",    "~> 0.4.0"
-depends "t3-kvm",     "~> 0.2.0"
-depends "t3-openvz",  "~> 1.1.0"
+depends "t3-kvm",     "~> 1.0.0"
+depends "t3-openvz",  "~> 2.0.0"
 depends "t3-zabbix",  "~> 0.2.0"
 
 # Upstream cookbooks (pin to patch-level version: "= a.b.c")
