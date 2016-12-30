@@ -5,7 +5,7 @@ license          "Apache 2.0"
 description      "Installs and updates basic software packages deployed to every node."
 source_url       "https://github.com/typo3-cookbooks/t3-base"
 
-version          "0.2.57"
+version          "0.2.58"
 
 recipe "t3-base::default",                  "Includes other recipes, some of them based on ohai detections"
 recipe "t3-base::_physical",                "Recipes that we want on physical nodes"
@@ -25,8 +25,8 @@ depends "hwraid",     "~> 1.1.0"
 depends "locales",    "~> 1.1.0"
 depends "ohmyzsh",    "~> 1.0.0"
 depends "t3-chef-client",    "~> 0.4.0"
-depends "t3-kvm",     "~> 0.2.0"
-depends "t3-openvz",  "~> 1.1.0"
+depends "t3-kvm",     "~> 1.0.0"
+depends "t3-openvz",  "~> 2.0.0"
 depends "t3-zabbix",  "~> 0.2.0"
 
 # Upstream cookbooks (pin to patch-level version: "= a.b.c")
