@@ -12,6 +12,7 @@ packages = %w{
   telnet
   tig
   traceroute
+  vim
   wget
   whois
 }
