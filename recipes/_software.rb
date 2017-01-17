@@ -8,6 +8,7 @@ packages = %w{
   lynx
   mc
   nano
+  parted
   tcpdump
   telnet
   tig
