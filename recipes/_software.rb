@@ -8,10 +8,12 @@ packages = %w{
   lynx
   mc
   nano
+  parted
   tcpdump
   telnet
   tig
   traceroute
+  vim
   wget
   whois
 }
