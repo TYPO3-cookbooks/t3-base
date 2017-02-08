@@ -5,7 +5,7 @@ default[:chef_handler][:handler_path] = "/var/chef/handlers"
 default[:etckeeper][:git_remote_enabled] = false
 
 #<> etckeeper: disable daily autocommit (AVOID_DAILY_AUTOCOMMIT)
-default['etckeeper']['daily_auto_commits'] = true
+default['etckeeper']['daily_auto_commits'] = false
 
 #<> Do not install recommends packages
 default['apt']['confd']['install_recommends'] = false
