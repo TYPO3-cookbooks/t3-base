@@ -13,3 +13,15 @@ control 't3base-production-1' do
     its('content') { should match /johnsysadmin:\s+"john@example.org"/}
   end
 end
+
+control 't3base-production-2' do
+  title 'Etckeeper configuration'
+  desc 'Verifies etckeeper configuration'
+
+  # we don't want daily autocommit
+  describe file('/etc/etckeeper/etckeeper.conf') do
+    it { should exist }
+    its('content') { should match %r{^AVOID_DAILY_AUTOCOMMITS=1$} }
+  end
+
+end
