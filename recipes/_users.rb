@@ -3,10 +3,14 @@ include_recipe "sudo"
 # With kitchen-docker 2.6.0, we cannot manage the /etc/sudoers file anymore.
 # Therefore, we have to give the kitchen user back its sudo rights.
 # See https://github.com/test-kitchen/kitchen-docker/issues/246
-sudo "kitchen" do
-  user "kitchen"
-  nopasswd true
-  only_if { ENV['TEST_KITCHEN']}
+#
+# Additionally, it's the "kitchen" user with Debian, the "vagrant" user with Ubuntu.
+%w(kitchen vagrant).each do |user|
+  sudo user do
+    user user
+    nopasswd true
+    not_if { ENV['TEST_KITCHEN'].nil? }
+  end
 end
 
 # check if the "users" data bag exists. if not, just skip the
