@@ -9,6 +9,7 @@ packages = %w{
   mc
   nano
   parted
+  rsync
   tcpdump
   telnet
   tig
