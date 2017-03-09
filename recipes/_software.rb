@@ -10,6 +10,7 @@ packages = %w{
   nano
   parted
   rsync
+  screen
   tcpdump
   telnet
   tig
