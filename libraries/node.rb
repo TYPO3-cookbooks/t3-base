@@ -32,6 +32,10 @@ module Typo3
       def virtualized?
         return virtualization? && node[:virtualization][:role].eql?("guest")
       end
+
+      def in_docker?
+        return virtualized? && node[:virtualization][:system] == 'docker'
+      end
     end
   end
 end

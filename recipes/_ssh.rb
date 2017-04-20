@@ -18,5 +18,22 @@
 #
 
 # this is esp. needed when running inside of docker
+# https://github.com/chef-cookbooks/openssh/pull/92
 directory "/var/run/sshd"
+
 include_recipe "openssh"
+
+# Chef 12.5.1 wrongly picked up upstart as provider for the service[ssh] resource
+# when running in kitchen-docker on Debian 8.
+# see https://github.com/TYPO3-cookbooks/t3-base/issues/1
+# This might be also needed on newer Debian versions or might be fixed in newer
+# versions of chef-client. It wasn't always reproducible, but occurred from time to time
+# with error "No such file or directory - /sbin/status"
+if in_docker? && node['platform'] == 'debian' && node['platform_version'].to_i == 8
+  log 'patch-service-ssh-in-docker' do
+    level :warn
+    message 'Running inside docker, changing the provider for the service[ssh] resource to  Chef::Provider::Service::Init::Debian'
+  end
+
+  resources('service[ssh]').provider Chef::Provider::Service::Init::Debian
+end
