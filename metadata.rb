@@ -39,7 +39,6 @@ depends "ntp",          "= 1.8.6"
 depends "openssh",      "= 2.1.0"
 depends "postfix",      "= 3.7.0"
 depends "sudo",         "= 2.6.0"
-depends "systemd",      "= 2.1.3"
 depends "users",        "= 2.0.3"
 
 # For compatibility with Chef 12.5.1
