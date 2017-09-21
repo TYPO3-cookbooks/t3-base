@@ -30,7 +30,7 @@ depends "t3-zabbix",  "~> 1.0.0"
 
 # Upstream cookbooks (pin to patch-level version: "= a.b.c")
 depends "apt",          "= 2.9.2"
-depends "chef_handler", "= 1.0.6"
+depends "chef_handler", "= 1.4.0"
 depends "git",          "= 4.2.4"
 depends "logrotate",    "= 1.9.2"
 depends "lvm",          "= 1.5.1"
