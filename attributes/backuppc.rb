@@ -2,5 +2,6 @@
 default['backuppc']['user'] = "t3o-backup"
 #<> SSH keys allowing the server to login
 default['backuppc']['user_ssh_pubkeys'] = [
+  "command=\"sudo $SSH_ORIGINAL_COMMAND\" ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC/lgNNdpTPATab72zVV2XDUD4hymQO55CvNzepX4vYw5xQ0exhiWN/TeEj5BAhPX+GXlq9d/y4LOiedfevTtxnQ35DLx01wpnHqdWkt4A1bzQDmySh2xOSQEMGFmx+5NXFYQt20ECB0/2yaGRPEDVnkKJtkZ5YBF5toFWR/wqFytdyh8rOmkYrWqPQ/X4bo5ikxAP6g+jtVxQ/mGPCJQb/qlKznJM257tYCVabgFfvzoxpKqsh/4K8A++dKXsbZA61SfWyA3Ewcr96N/FdD1UOsk/iwbqREmz5DNpn5weV/Y0nixEdHV5l6+MN9m48ykcsSv2a/3nNJrZP94Luzf3R backuppc@backup01",
   "command=\"sudo $SSH_ORIGINAL_COMMAND\" ssh-dss AAAAB3NzaC1kc3MAAACBAIV5OCUoJjsYLZ5kN/hEmUkcrJw/sLS+VTXg7N0HBVNChwgZEW/uizYbEcl/OWi0HplVYfG3WX1u8X6wWhajrxrTizMaNGoVvUXur/s/SNEW6fg6JKPrIswV0NuWyrwPmzO9582KAa7WU7sBIO0FpiadcU+Srz+eUUap1dYH2eHvAAAAFQCjn7rZdpaoqIbbQJIo2ZlygVt+JwAAAIBcIosaN7RR3Ytc4Fx58do18tSlsFqoQuiafh6iof73hPP/cEwWQRDgXzfmcmkgZne4ijc39TcZAinOJNAO4Em4H4BuPsKyjLj1ST6slvGWtHxyXxrca9yeNSMnOdn2ZhQU7caFqb1nee1m6UlpuBvHz5MShYCpvpAyDtNjxXbg0QAAAIAf6RUuCpR4/uCMtL5mJ53HKBlmVHmF2RemjpcOetb+xGTZHkG9ikMePNQTn23mpLW+ZguI6TIpBkeYUyPj0OT6im+PgOaN7iQOngCINCGnC9+aMKnCIvk3lLs77fcNYKhKZOLZm6O3ODhKkBKN9GJNCVB/qOEjhd5mECJrSWytEA== backuppc@backup01.typo3.org-2012-10-30T08:19:12+0100"
 ]
