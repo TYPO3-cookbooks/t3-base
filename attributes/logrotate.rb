@@ -1,5 +1,7 @@
 #<> Rotate logs on a daily basis
 default['logrotate']['global']['daily'] = true
+#<> Rotate logs on NOT a weekly basis
+default['logrotate']['global']['weekly'] = false
 #<> Keep 7 days of logs
 default['logrotate']['global']['rotate'] = "7"
 #<> Only rotate log, if it has content
