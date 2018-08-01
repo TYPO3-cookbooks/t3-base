@@ -10,7 +10,7 @@ control 't3base-production-1' do
   end
 
   describe file('/etc/aliases') do
-    its('content') { should match /johnsysadmin:\s+"john@example.org"/}
+    its('content') { should match /johnsysadmin:\s+john@example.org/}
   end
 end
 
