@@ -37,7 +37,7 @@ depends "lvm",          "= 1.5.1"
 depends "motd",         "= 0.6.4"
 depends "ntp",          "= 1.8.6"
 depends "openssh",      "= 2.1.0"
-depends "postfix",      "= 3.7.0"
+depends "postfix",      "= 5.3.1"
 depends "sudo",         "= 2.6.0"
 depends "users",        "= 2.0.3"
 
