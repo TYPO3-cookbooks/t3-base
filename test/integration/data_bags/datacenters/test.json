@@ -4,11 +4,6 @@
     "test.vagrant"
   ],
   "attributes": {
-    "postfix": {
-      "main": {
-        "relayhost": "test.example.com"
-      }
-    },
     "ntp": {
       "servers": [
         "0.0.0.0",
