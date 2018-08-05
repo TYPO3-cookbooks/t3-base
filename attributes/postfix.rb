@@ -6,3 +6,6 @@ default['postfix']['aliases']['root'] = "admin@typo3.org"
 
 #<> Some applications try to send mails from root@localhost, which are not accepted by the mail server. Rewrite those to root@typo3.org
 default['postfix']['smtp_generic_map_entries'] = { "@localhost" => "@typo3.org" }
+
+#<> Relay outgoing mail via mailrelay.typo3.org (which then use mail.typo3.org)
+default['postfix']['main']['relayhost'] = 'mailrelay.typo3.org'

@@ -17,14 +17,24 @@ suites:
     run_list:
       - recipe[t3-base::default]
     attributes:
+      postfix:
+        main:
+          relayhost: mailrelay.invalid
   - name: physical
     run_list:
       - recipe[t3-base::default]
       - recipe[t3-base::_physical]
+    attributes:
+      postfix:
+        main:
+          relayhost: mailrelay.invalid
   - name: production
     run_list:
       - recipe[t3-base::default]
     attributes:
+      postfix:
+        main:
+          relayhost: mailrelay.invalid
       t3-base:
         flags:
           production: true
