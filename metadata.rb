@@ -44,3 +44,4 @@ depends "users",        "= 2.0.3"
 # For compatibility with Chef 12.5.1
 depends "cron",         "< 4.0.0"
 depends "ohai",         "< 5.0.0"
+depends "seven_zip",    "< 3.0.0"
