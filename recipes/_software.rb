@@ -27,5 +27,5 @@ end
 # apt-key needs dirmngr which is no longer installed by default on Debian Stretch
 package "dirmngr" do
   action :upgrade
-  only_if { if node[:platform] == "debian" and node[:platform_version].to_i >= 9 }
+  only_if { node[:platform] == "debian" and node[:platform_version].to_i >= 9 }
 end
