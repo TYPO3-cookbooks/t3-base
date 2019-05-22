@@ -24,8 +24,14 @@ package packages do
   action :upgrade
 end
 
-# apt-key needs dirmngr which is no longer installed by default on Debian Stretch
-package "dirmngr" do
+
+# Debian Stretch needs some packages which are no longer installed by default
+stretch_packages = %w{
+  dirmngr
+  gnupg
+}
+
+package stretch_packages do
   action :upgrade
   only_if { node[:platform] == "debian" and node[:platform_version].to_i >= 9 }
 end
