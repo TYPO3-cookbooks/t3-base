@@ -27,7 +27,6 @@ end
 
 # Debian Stretch needs some packages which are no longer installed by default
 stretch_packages = %w{
-  dirmngr
   gnupg
 }
 
