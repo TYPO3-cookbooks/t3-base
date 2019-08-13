@@ -31,7 +31,6 @@ depends "t3-zabbix",  "~> 1.0.0"
 # Upstream cookbooks (pin to patch-level version: "= a.b.c")
 depends "apt",          "= 2.9.2"
 depends "chef_handler", "= 1.4.0"
-depends "git",          "= 4.2.4"
 depends "logrotate",    "= 1.9.2"
 depends "lvm",          "= 1.5.1"
 depends "motd",         "= 0.6.4"
@@ -43,5 +42,6 @@ depends "users",        "= 2.0.3"
 
 # For compatibility with Chef 12.5.1
 depends "cron",         "< 4.0.0"
+depends "git",          "< 10.0.0"
 depends "ohai",         "< 5.0.0"
 depends "seven_zip",    "< 3.0.0"
