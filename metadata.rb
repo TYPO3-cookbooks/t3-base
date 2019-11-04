@@ -41,6 +41,7 @@ depends "sudo",         "= 2.6.0"
 depends "users",        "= 2.0.3"
 
 # For compatibility with Chef 12.5.1
+depends "chef-sugar",   "< 5.0.0"
 depends "cron",         "< 4.0.0"
 depends "git",          "< 10.0.0"
 depends "ohai",         "< 5.0.0"
